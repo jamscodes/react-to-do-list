@@ -39,4 +39,8 @@ body {
   h4 {
     @apply text-xl font-bold;
   }
+
+  .task-card {
+    @apply shadow-md rounded-lg p-4 text-black;
+  }
 }
