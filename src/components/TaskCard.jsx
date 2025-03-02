@@ -1,4 +1,6 @@
+import React from 'react';
 import cx from 'classnames';
+import taskPropType from '../prop-types/taskPropType';
 
 export default function TaskCard({ task }) {
     const cardClasses = cx('task-card', {
@@ -13,3 +15,7 @@ export default function TaskCard({ task }) {
         </div>
     );
 }
+
+TaskCard.propTypes = {
+    task: taskPropType.isRequired,
+};

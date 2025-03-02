@@ -1,5 +1,6 @@
 import TaskCard from './TaskCard';
 import PropTypes from 'prop-types';
+import taskPropType from '../prop-types/taskPropType';
 
 export default function TaskTable({ tasks }) {
     return (
@@ -30,12 +31,5 @@ export default function TaskTable({ tasks }) {
 }
 
 TaskTable.propTypes = {
-    tasks: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            status: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-        })
-    ).isRequired,
+    tasks: PropTypes.arrayOf(taskPropType).isRequired,
 };
