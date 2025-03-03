@@ -5,28 +5,29 @@ import { useState } from "react";
 import { DragEndEvent } from "@dnd-kit/core";
 
 export default function Home() {
-  const [tasks, setTasks] = useState([
+  const initialTasks = [
     {id: 1, status: "Not Started", title: "Task One", description: "Description for Task One"},
     {id: 2, status: "In Progress", title: "Task Two", description: "Description for Task Two"},
     {id: 3, status: "Not Started", title: "Task Three", description: "Description for Task Three"},
     {id: 4, status: "Not Started", title: "Task Four", description: "Description for Task Four"},
     {id: 5, status: "Not Started", title: "Task Five", description: "Description for Task Five"},
-  ]);
+  ];
+
+  const [tasks, setTasks] = useState(initialTasks);
 
   const [, setIsOver] = useState(false);
 
   const handleDragEnd = (event: DragEndEvent) => {
-      if(event.over?.id === "droppable") {
-        const taskId = event.active.id;
-        const updatedTasks = tasks.map(task => {
-          if(task.id === taskId) {
-            return {...task, status: "Completed"};
-          }
-          return task;
-        });
-        setTasks(updatedTasks);
-        setIsOver(true);
-    }
+    console.log(tasks)
+    const taskId = event.active.id;
+    const updatedTasks = tasks.map(task => {
+      if(task.id === taskId) {
+        return {...task, status: event.over?.data.current?.status ?? task.status};
+      }
+      return task;
+    });
+    setTasks(updatedTasks);
+    setIsOver(true);
   }
   
   return (
