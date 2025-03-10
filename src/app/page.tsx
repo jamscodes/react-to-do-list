@@ -20,7 +20,6 @@ export default function Home() {
   const [, setIsOver] = useState(false);
 
   const handleDragEnd = (event: DragEndEvent) => {
-    console.log(tasks)
     const taskId = event.active.id;
     const updatedTasks = tasks.map(task => {
       if(task.id === taskId) {
