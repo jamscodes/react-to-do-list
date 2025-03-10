@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
 import cx from 'classnames';
-import { taskPropType } from '../propTypes';
 import { useDraggable } from '@dnd-kit/core';
+import Task from '@/interfaces/Task.interface';
 
-export default function TaskCard({ task }) {
+export default function TaskCard({task}: {task: Task}) {
     const {attributes, listeners, setNodeRef, transform} = useDraggable({
         id: task.id,
     });
@@ -26,7 +26,3 @@ export default function TaskCard({ task }) {
         </div>
     );
 }
-
-TaskCard.propTypes = {
-    task: taskPropType.isRequired,
-};

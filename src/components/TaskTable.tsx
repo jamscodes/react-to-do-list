@@ -1,22 +1,25 @@
 'use client'
 import TaskCard from './TaskCard';
-import PropTypes from 'prop-types';
-import { taskPropType } from '../propTypes';
 import { useDroppable } from '@dnd-kit/core';
 import cx from 'classnames';
+import Task from '../interfaces/Task.interface';
 
-export default function TaskTable({ tasks }) {
-    const {isOverNotStarted, setNodeRef: setNotStartedRef} = useDroppable({
+interface TaskTableProps {
+    tasks: Task[];
+}
+
+export default function TaskTable({ tasks }: TaskTableProps) {
+    const {isOver: isOverNotStarted, setNodeRef: setNotStartedRef} = useDroppable({
         id: 'tasks-not-started',
         data: {status: 'Not Started'},
     });
 
-    const {isOverInProgress, setNodeRef: setInProgressRef} = useDroppable({
+    const {isOver: isOverInProgress, setNodeRef: setInProgressRef} = useDroppable({
         id: 'tasks-in-progress',
         data: {status: 'In Progress'},
     });
 
-    const {isOverComplete, setNodeRef: setCompleteRef} = useDroppable({
+    const {isOver: isOverComplete, setNodeRef: setCompleteRef} = useDroppable({
         id: 'tasks-complete',
         data: {status: 'Complete'},
     });
@@ -59,7 +62,3 @@ export default function TaskTable({ tasks }) {
         </section>
     );
 }
-
-TaskTable.propTypes = {
-    tasks: PropTypes.arrayOf(taskPropType).isRequired,
-};
